@@ -1,0 +1,51 @@
+import pygame
+
+def display_start_screen():
+    pygame.draw.circle(screen, PURPLE, start_button.center, 100, 5)
+
+def display_game_screen():
+    print("It is time to start your math level!")
+
+def check_buttons(pos):
+    global start
+    if start_button.collidepoint(pos):
+        start - True 
+
+pygame.init()
+screen_width = 2000
+screen_height = 1000
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("math")
+
+start_button = pygame.Rect(0, 0, 200, 200)
+start_button.center = (200, screen_height - 200)
+
+BLACK = (0, 0, 0)
+PURPLE = (142, 106, 179)
+
+start = False
+
+running = True
+while running:
+    click_pos = None
+   
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.MOUSEBUTTONUP:
+            click_pos = pygame.mouse.get_pos()
+            print(click_pos)
+
+    screen.fill(BLACK)
+
+    if start:
+        display_game_screen()
+    else:
+        display_start_screen()
+
+    if click_pos:
+        check_buttons(click_pos)
+
+    pygame.display.update()
+
+pygame.quit()
