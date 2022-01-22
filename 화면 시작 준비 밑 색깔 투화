@@ -1,0 +1,30 @@
+import pygame
+
+def display_start_screen():
+    pygame.draw.circle(screen, PURPLE, start_button.center, 100, 15)
+
+pygame.init()
+screen_width = 2000
+screen_height = 1000
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("math")
+
+start_button = pygame.Rect(0, 0, 200, 200)
+start_button.center = (200, screen_height - 200)
+
+BLACK = (0, 0, 0)
+PURPLE = (142, 106, 179)
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    screen.fill(BLACK)
+
+    display_start_screen()
+
+    pygame.display.update()
+
+pygame.quit()
